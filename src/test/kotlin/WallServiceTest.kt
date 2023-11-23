@@ -15,7 +15,15 @@ class WallServiceTest {
     @Test
     fun addPost() {
         val post1 = service.addPost(Post(text = "Post1"))
+        post1.attachments.add(
+            PhotoAttachment(
+                id = 3,
+                ownerId = 2,
+                attachmentData = Photo("some_photo_link", "another_photo_link")
+            )
+        )
         assertEquals(1, post1.id)
+        assertEquals(1, post1.attachments.size)
 
     }
 
