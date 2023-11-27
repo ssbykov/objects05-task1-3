@@ -24,22 +24,22 @@ data class Post(
     )
 
 data class Comments(
-    var count: Int = 0,
-    var canPost: Boolean = false,
-    var canClose: Boolean = false,
-    var canOpen: Boolean = false,
+    val count: Int = 0,
+    val canPost: Boolean = false,
+    val canClose: Boolean = false,
+    val canOpen: Boolean = false,
 )
 
 data class Copyright(
-    var id: Int = 0,
-    var link: String = "",
-    var name: String = "",
-    var type: String = "",
+    val id: Int = 0,
+    val link: String = "",
+    val name: String = "",
+    val type: String = "",
 )
 
 data class Reposts(
-    var count: Int = 0,
-    var userReposted: Boolean = false,
+    val count: Int = 0,
+    val userReposted: Boolean = false,
 )
 
 //в документации нет описания параметров этого класса
@@ -54,11 +54,11 @@ data class Geo(
 )
 
 data class Likes(
-    var count: Int = 0,
-    var userLikes: Boolean = false,
-    var canLike: Boolean = false
+    val count: Int = 0,
+    val userLikes: Boolean = false,
+    val canLike: Boolean = false
 )
 
 data class Views(
-    var count: Int = 0,
+    val count: Int = 0,
 )
