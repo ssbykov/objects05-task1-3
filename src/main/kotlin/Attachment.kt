@@ -1,54 +1,87 @@
-sealed interface Attachment {
-    val type: AttachmentType
-    val id: Int
-    val ownerId: Int
-}
+data class Attachment(
+    val type: AttachmentType,
+    val attachment: AttachmentObject
+)
 
 enum class AttachmentType {
     AUDIO, VIDEO, PHOTO, DOC, MARKET
 }
 
-data class Photo(val photo130: String, val photo604: String)
+interface AttachmentObject {
+    val id: Int
+    val ownerId: Int
+}
+
+interface Photo {
+    val photo130: String
+    val photo604: String
+}
 
 data class PhotoAttachment(
-    override val type: AttachmentType = AttachmentType.PHOTO,
-    override var id: Int,
+    override val id: Int,
     override val ownerId: Int,
-    val attachmentData: Photo,
-) : Attachment
+    override val photo130: String,
+    override val photo604: String
+) : AttachmentObject, Photo
 
-data class Video(val title: String, val description: String, val duration: Int)
+interface Video {
+    val title: String
+    val description: String
+    val duration: Int
+}
 
 data class VideoAttachment(
-    override val type: AttachmentType = AttachmentType.VIDEO,
-    override var id: Int,
+    override val id: Int,
     override val ownerId: Int,
-    val attachmentData: Video
-) : Attachment
+    override val title: String,
+    override val description: String,
+    override val duration: Int
+) : AttachmentObject, Video
 
-data class Audio(val artist: String, val title: String, val duration: Int, val url: String)
+interface Audio {
+    val artist: String
+    val title: String
+    val duration: Int
+    val url: String
+}
 
 data class AudioAttachment(
-    override val type: AttachmentType = AttachmentType.AUDIO,
-    override var id: Int,
+    override val id: Int,
     override val ownerId: Int,
-    val attachmentData: Audio
-) : Attachment
+    override val artist: String,
+    override val title: String,
+    override val duration: Int,
+    override val url: String
+) : AttachmentObject, Audio
 
-data class Doc(val title: String, val size: Int, val ext: String, val url: String)
+interface Doc {
+    val title: String
+    val size: Int
+    val ext: String
+    val url: String
+}
 
 data class DocAttachment(
-    override val type: AttachmentType = AttachmentType.DOC,
-    override var id: Int,
+    override val id: Int,
     override val ownerId: Int,
-    val attachmentData: Doc
-) : Attachment
+    override val title: String,
+    override val size: Int,
+    override val ext: String,
+    override val url: String
+) : AttachmentObject, Doc
 
-data class Market(val title: String, val description: String, val price: Int, val weight: Int)
+interface Market {
+    val title: String
+    val description: String
+    val price: Int
+    val weight: Int
+}
 
 data class MarketAttachment(
-    override val type: AttachmentType = AttachmentType.MARKET,
-    override var id: Int,
+    override val id: Int,
     override val ownerId: Int,
-    val attachmentData: Market
-) : Attachment
+    override val title: String,
+    override val description: String,
+    override val price: Int,
+    override val weight: Int
+) : AttachmentObject, Market
