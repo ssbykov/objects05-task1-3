@@ -8,7 +8,7 @@ data class Post(
     val replyOwnerId: Int = 0,
     val replyPostId: Int = 0,
     val friendsOnly: Boolean = false,
-    val comments: MutableList<Comment> = mutableListOf(),
+    val comments: Comments = Comments(),
     val copyright: Copyright? = null,
     val likes: Likes = Likes(),
     val reposts: Reposts = Reposts(),
@@ -21,8 +21,14 @@ data class Post(
     val canEdit: Boolean = false,
     val isFavorite: Boolean = false,
     val attachments: MutableList<Attachment> = mutableListOf(),
-)
+    )
 
+data class Comments(
+    val count: Int = 0,
+    val canPost: Boolean = false,
+    val canClose: Boolean = false,
+    val canOpen: Boolean = false,
+)
 
 data class Copyright(
     val id: Int = 0,
@@ -43,7 +49,7 @@ data class PostSource(
 
 data class Geo(
     val type: String,
-    val coordinates: String,
+    val coordinates : String,
     val place: String?,
 )
 
@@ -56,5 +62,3 @@ data class Likes(
 data class Views(
     val count: Int = 0,
 )
-
-class PostNotFoundException(): RuntimeException("Данного поста не существует")
